@@ -6,12 +6,12 @@ branding:
   color: 'green'
 inputs:
   action:
-    required: true
+    required: false
     options:
       - retrieve
       - persist
   artifactName:
-    required: true
+    required: false
 
     
 runs:
