@@ -1,4 +1,4 @@
-name: Test
+name: Test with name
 
 on:
   push:
@@ -14,6 +14,7 @@ jobs:
       - uses: bissolli/gh-action-persist-workspace@v1
         with:
           action: persist
+          artifactName: my-art
 
   step-a:
     needs: [init]
@@ -23,6 +24,7 @@ jobs:
       - uses: bissolli/gh-action-persist-workspace@v1
         with:
           action: retrieve
+          artifactName: my-art
       - name: Step A
         run: echo "This is running from the persisted workspace"
 
@@ -34,5 +36,6 @@ jobs:
       - uses: bissolli/gh-action-persist-workspace@v1
         with:
           action: retrieve
+          artifactName: my-art
       - name: Step B
         run: echo "This is running from the persisted workspace"

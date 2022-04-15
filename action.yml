@@ -1,16 +1,19 @@
 name: persist-workspace
+description: 'A action to persist your workspace across different jobs'
+author: bissolli
+branding:
+  icon: 'box'  
+  color: 'green'
+inputs:
+  action:
+    required: true
+    options:
+      - retrieve
+      - persist
+  artifactName:
+    required: true
 
-on:
-  workflow_call:
-    inputs:
-      action:
-        required: true
-        options:
-          - retrieve
-          - persist
-      artifactName:
-        required: true
-
+    
 runs:
   using: "composite"
   steps:
