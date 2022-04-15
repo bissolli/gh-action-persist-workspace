@@ -1,0 +1,38 @@
+name: My CI
+
+on:
+  push:
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: First step
+        run: echo "Init is ready"
+      - uses: bissolli/gh-action-persist-workspace@v1
+        with:
+          action: persist
+
+  step-a:
+    needs: [init]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+      - uses: bissolli/gh-action-persist-workspace@v1
+        with:
+          action: retrieve
+      - name: Step A
+        run: echo "This is running from the persisted workspace"
+
+  step-b:
+    needs: [init]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v3
+      - uses: bissolli/gh-action-persist-workspace@v1
+        with:
+          action: retrieve
+      - name: Step B
+        run: echo "This is running from the persisted workspace"

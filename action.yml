@@ -1,0 +1,38 @@
+name: persist-workspace
+
+on:
+  workflow_call:
+    inputs:
+      action:
+        required: true
+        options:
+          - retrieve
+          - persist
+      artifactName:
+        required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Create the workspace artifact
+      if: ${{ inputs.action != 'retrieve' }}
+      shell: bash
+      run: tar -cf workspace.tar --exclude=workspace.tar .
+    - name: Upload the workspace artifact
+      if: ${{ inputs.action == 'persist' }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.artifactName || 'persisted-artifact' }}
+        path: workspace.tar
+        if-no-files-found: error
+    - name: Retrieve workspace
+      if: ${{ inputs.action == 'retrieve' }}
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ inputs.artifactName || 'persisted-artifact' }}
+    - name: Extract workspace
+      if: ${{ inputs.action == 'retrieve' }}
+      shell: bash
+      run: |
+        ls -lah
+        tar -xf workspace.tar
