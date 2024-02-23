@@ -19,11 +19,11 @@ jobs:
   init:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - name: Install dependencies
         run: npm install
-      - uses: bissolli/gh-action-persist-workspace@v1
+      - uses: bissolli/gh-action-persist-workspace@v2
         with:
           action: persist
 ```
@@ -40,11 +40,11 @@ jobs:
   init:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - name: Install dependencies
         run: npm install
-      - uses: bissolli/gh-action-persist-workspace@v1
+      - uses: bissolli/gh-action-persist-workspace@v2
         with:
           action: persist
 
@@ -52,7 +52,7 @@ jobs:
     needs: [init]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
       - uses: chatfood/gh-action-persist-workspace@master
         with:
           action: retrieve
@@ -73,11 +73,11 @@ jobs:
   init:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
       - name: Install dependencies
         run: npm install
-      - uses: bissolli/gh-action-persist-workspace@v1
+      - uses: bissolli/gh-action-persist-workspace@v2
         with:
           action: persist
 
@@ -85,8 +85,8 @@ jobs:
     needs: [init]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-      - uses: bissolli/gh-action-persist-workspace@v1
+      - uses: actions/setup-node@v4
+      - uses: bissolli/gh-action-persist-workspace@v2
         with:
           action: retrieve
       - name: Run unit tests
@@ -96,8 +96,8 @@ jobs:
     needs: [init]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v3
-      - uses: bissolli/gh-action-persist-workspace@v1
+      - uses: actions/setup-node@v4
+      - uses: bissolli/gh-action-persist-workspace@v2
         with:
           action: retrieve
       - name: Build the project
