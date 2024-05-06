@@ -25,7 +25,7 @@ runs:
       if: ${{ inputs.action == 'persist' }}
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ inputs.artifactName || github.run_number }}
+        name: ${{ inputs.artifactName || github.run_id }}
         path: workspace.tar
         if-no-files-found: error
         overwrite: true
@@ -33,7 +33,7 @@ runs:
       if: ${{ inputs.action == 'retrieve' }}
       uses: actions/download-artifact@v4
       with:
-        name: ${{ inputs.artifactName || github.run_number }}
+        name: ${{ inputs.artifactName || github.run_id }}
     - name: Extract workspace
       if: ${{ inputs.action == 'retrieve' }}
       shell: bash
